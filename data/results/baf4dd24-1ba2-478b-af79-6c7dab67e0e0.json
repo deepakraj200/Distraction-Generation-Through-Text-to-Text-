@@ -1,0 +1,62 @@
+{
+  "id": "baf4dd24-1ba2-478b-af79-6c7dab67e0e0",
+  "testId": "64e0b44b-e1b9-460f-a540-a7902c64a19f",
+  "testName": "sharan21",
+  "student": "student1",
+  "date": "2025-04-25T11:48:52.871957",
+  "scorePercent": 29,
+  "correctCount": 2,
+  "totalQuestions": 7,
+  "timeTaken": 0,
+  "answers": [
+    {
+      "question": "What is the primary goal of DevOps?",
+      "selected": "To improve the quality of software",
+      "correct": "To increase the speed of software delivery",
+      "isCorrect": false,
+      "feedback": "Great effort on your answer! While improving the quality of software is an important aspect of DevOps, it's not the primary goal. The primary goal of DevOps is actually to increase the speed of software delivery, which involves automating and streamlining the development, testing, and deployment processes to get software to users faster and more reliably. By focusing on speed, DevOps aims to improve collaboration, reduce errors, and increase customer satisfaction."
+    },
+    {
+      "question": "What is the main difference between Agile and DevOps?",
+      "selected": "Agile focuses on speed, while DevOps focuses on quality",
+      "correct": "Agile focuses on customer feedback, while DevOps focuses on team collaboration",
+      "isCorrect": false,
+      "feedback": "Great effort on attempting to distinguish between Agile and DevOps! However, your answer doesn't quite capture the essence of these two methodologies. Agile is actually more focused on incorporating customer feedback and iterating based on that input, whereas DevOps is centered around fostering collaboration and communication between development and operations teams to improve the entire software development lifecycle. Keep exploring and learning - you're on the right track!"
+    },
+    {
+      "question": "What is the purpose of Continuous Integration in DevOps?",
+      "selected": "To automate deployment",
+      "correct": "To track changes to code",
+      "isCorrect": false,
+      "feedback": "Great effort on your answer! While automation of deployment is an important aspect of DevOps, it's not the primary purpose of Continuous Integration. Continuous Integration is actually focused on tracking changes to code, ensuring that each change is properly tested and validated, and providing immediate feedback to developers. This helps catch errors early on and improves the overall quality of the codebase."
+    },
+    {
+      "question": "What is the benefit of using Infrastructure as Code in DevOps?",
+      "selected": "It simplifies the management of infrastructure",
+      "correct": "It simplifies the management of infrastructure",
+      "isCorrect": true,
+      "feedback": "Correct! Well done."
+    },
+    {
+      "question": "What is the role of the Scrum Master in a DevOps team?",
+      "selected": "To lead the development team",
+      "correct": "To facilitate team collaboration",
+      "isCorrect": false,
+      "feedback": "Great effort on your answer! However, the Scrum Master's role is not to lead the development team, but rather to facilitate team collaboration and remove obstacles that might hinder the team's progress. This is because Scrum emphasizes self-organizing teams, and the Scrum Master's role is more focused on enabling the team to work together effectively, rather than directing their work."
+    },
+    {
+      "question": "What is the purpose of Continuous Monitoring in DevOps?",
+      "selected": "To improve code quality",
+      "correct": "To identify performance issues",
+      "isCorrect": false,
+      "feedback": "Great effort on attempting this question! While improving code quality is an important aspect of DevOps, it's not the primary purpose of Continuous Monitoring. Continuous Monitoring is actually focused on identifying performance issues, such as bottlenecks or errors, in real-time, so that they can be addressed quickly and efficiently. This helps ensure the system is running smoothly and reliably, which is a critical aspect of DevOps. Keep working at it, you're on the right track!"
+    },
+    {
+      "question": "What is the advantage of using DevOps in software development?",
+      "selected": "It increases the speed of software delivery",
+      "correct": "It increases the speed of software delivery",
+      "isCorrect": true,
+      "feedback": "Correct! Well done."
+    }
+  ]
+}

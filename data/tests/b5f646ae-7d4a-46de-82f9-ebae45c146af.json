@@ -1,0 +1,55 @@
+{
+  "id": "b5f646ae-7d4a-46de-82f9-ebae45c146af",
+  "name": "new41",
+  "timeLimit": 30,
+  "questions": [
+    {
+      "options": [
+        "To reduce the cost of software development",
+        "To improve the speed and quality of software releases (Correct)",
+        "To increase the complexity of software systems",
+        "To reduce the need for communication between teams"
+      ],
+      "question": "What is the primary goal of DevOps?"
+    },
+    {
+      "options": [
+        "Agile focuses on development, while DevOps focuses on operations",
+        "Agile focuses on speed, while DevOps focuses on quality",
+        "Agile focuses on customer feedback, while DevOps focuses on team collaboration (Correct)",
+        "Agile focuses on iterative development, while DevOps focuses on continuous delivery"
+      ],
+      "question": "What is the main difference between Agile and DevOps?"
+    },
+    {
+      "options": [
+        "To automate testing and deployment",
+        "To improve communication between teams",
+        "To reduce the risk of errors and bugs (Correct)",
+        "To increase the speed of software releases"
+      ],
+      "question": "What is the purpose of continuous integration in DevOps?"
+    },
+    {
+      "options": [
+        "To manage changes to software code (Correct)",
+        "To automate testing and deployment",
+        "To improve communication between teams",
+        "To reduce the cost of software development"
+      ],
+      "question": "What is the role of version control in DevOps?"
+    },
+    {
+      "options": [
+        "Faster development and delivery of software",
+        "Improved quality and reliability of software",
+        "Reduced cost of software development",
+        "All of the above (Correct)"
+      ],
+      "question": "What is the benefit of using DevOps in software development?"
+    }
+  ],
+  "createdAt": "2025-04-25T11:48:07.937996",
+  "createdBy": "staff1",
+  "difficulty": "Standard"
+}

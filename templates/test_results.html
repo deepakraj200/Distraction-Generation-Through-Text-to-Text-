@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Results</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <a href="/dashboard">Back to Dashboard</a>
+        <h2>Test Results</h2>
+        
+        <div id="result-summary">
+            <p class="loading-text">Loading results...</p>
+        </div>
+        
+        <div id="result-chart-container">
+            <canvas id="resultChart"></canvas>
+        </div>
+        
+        <div id="result-details">
+            <!-- Question-by-question results will be loaded here -->
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const resultId = urlParams.get('id');
+            
+            if (!resultId) {
+                document.getElementById('result-summary').innerHTML = '<p>Error: No result ID provided</p>';
+                return;
+            }
+            
+            // Load result data
+            fetch(`/get_result/${resultId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        displayResults(data.result);
+                    } else {
+                        document.getElementById('result-summary').innerHTML = `<p>Error: ${data.message}</p>`;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading results:', error);
+                    document.getElementById('result-summary').innerHTML = '<p>Error loading results. Please try again later.</p>';
+                });
+            
+            function displayResults(result) {
+                // Display summary
+                const summaryDiv = document.getElementById('result-summary');
+                summaryDiv.innerHTML = `
+                    <h3>${result.testName}</h3>
+                    <div class="result-stats">
+                        <p><strong>Score:</strong> ${result.scorePercent}%</p>
+                        <p><strong>Correct Answers:</strong> ${result.correctCount} out of ${result.totalQuestions}</p>
+                        <p><strong>Date:</strong> ${new Date(result.date).toLocaleString()}</p>
+                    </div>
+                `;
+                
+                // Create pie chart
+                const ctx = document.getElementById('resultChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Correct', 'Incorrect'],
+                        datasets: [{
+                            data: [result.correctCount, result.totalQuestions - result.correctCount],
+                            backgroundColor: ['#27ae60', '#e74c3c'],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            },
+                            title: {
+                                display: true,
+                                text: 'Test Performance'
+                            }
+                        }
+                    }
+                });
+                
+                // Display detailed results
+                const detailsDiv = document.getElementById('result-details');
+                detailsDiv.innerHTML = '<h3>Question Details</h3>';
+                
+                result.answers.forEach((answer, index) => {
+                    const isCorrect = answer.selected === answer.correct;
+                    const detailItem = document.createElement('div');
+                    detailItem.className = `result-item ${isCorrect ? 'correct' : 'incorrect'}`;
+                    
+                    detailItem.innerHTML = `
+                        <h4>Question ${index + 1}: ${answer.question}</h4>
+                        <p><strong>Your Answer:</strong> ${answer.selected || 'Not answered'}</p>
+                        <p><strong>Correct Answer:</strong> ${answer.correct}</p>
+                        <p class="result-status">${isCorrect ? 'Correct' : 'Incorrect'}</p>
+                    `;
+                    
+                    detailsDiv.appendChild(detailItem);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+

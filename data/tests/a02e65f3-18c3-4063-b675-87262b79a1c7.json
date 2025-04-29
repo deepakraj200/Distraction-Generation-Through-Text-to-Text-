@@ -1,0 +1,100 @@
+{
+  "id": "a02e65f3-18c3-4063-b675-87262b79a1c7",
+  "name": "test 21",
+  "timeLimit": 60,
+  "questions": [
+    {
+      "options": [
+        "To increase the speed of software development (Correct)",
+        "To reduce the cost of software development",
+        "To improve the quality of software development",
+        "To increase the complexity of software development"
+      ],
+      "question": "What is the primary goal of DevOps?"
+    },
+    {
+      "options": [
+        "Agile focuses on development, while DevOps focuses on operations",
+        "Agile focuses on speed, while DevOps focuses on quality",
+        "Agile focuses on customer feedback, while DevOps focuses on team collaboration (Correct)",
+        "Agile focuses on iterative development, while DevOps focuses on continuous delivery"
+      ],
+      "question": "What is the main difference between Agile and DevOps?"
+    },
+    {
+      "options": [
+        "To automate testing",
+        "To automate deployment",
+        "To track changes to code (Correct)",
+        "To improve code quality"
+      ],
+      "question": "What is the purpose of Continuous Integration in DevOps?"
+    },
+    {
+      "options": [
+        "It reduces the cost of infrastructure",
+        "It increases the speed of infrastructure provisioning",
+        "It improves the quality of infrastructure",
+        "It simplifies the management of infrastructure (Correct)"
+      ],
+      "question": "What is the benefit of using Infrastructure as Code in DevOps?"
+    },
+    {
+      "options": [
+        "To manage the development team",
+        "To manage the operations team",
+        "To facilitate Scrum meetings (Correct)",
+        "To track project progress"
+      ],
+      "question": "What is the role of the Scrum Master in DevOps?"
+    },
+    {
+      "options": [
+        "To detect bugs in code",
+        "To track changes to code",
+        "To monitor application performance (Correct)",
+        "To improve code quality"
+      ],
+      "question": "What is the purpose of Continuous Monitoring in DevOps?"
+    },
+    {
+      "options": [
+        "It reduces the cost of software development",
+        "It increases the speed of software development (Correct)",
+        "It improves the quality of software development",
+        "It increases the complexity of software development"
+      ],
+      "question": "What is the benefit of using DevOps in an organization?"
+    },
+    {
+      "options": [
+        "It requires significant cultural changes (Correct)",
+        "It requires significant investment in new tools",
+        "It requires significant changes to existing processes",
+        "It requires significant training for employees"
+      ],
+      "question": "What is the main challenge of adopting DevOps in an organization?"
+    },
+    {
+      "options": [
+        "To track changes to code (Correct)",
+        "To manage different versions of code",
+        "To improve code quality",
+        "To reduce the cost of software development"
+      ],
+      "question": "What is the purpose of Version Control in DevOps?"
+    },
+    {
+      "options": [
+        "It reduces the risk of errors in code",
+        "It increases the speed of software delivery (Correct)",
+        "It improves the quality of software development",
+        "It increases the complexity of software development"
+      ],
+      "question": "What is the benefit of using Continuous Deployment in DevOps?"
+    }
+  ],
+  "createdAt": "2025-04-25T11:02:39.200962",
+  "createdBy": "staff1",
+  "difficulty": "Standard"
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add MCQ - Ed Quiz System</title>
+</head>
+<body>
+    <h2>Add New MCQ</h2>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.question.label }}: {{ form.question() }}
+        </div>
+        <div>
+            {{ form.option_1.label }}: {{ form.option_1() }}
+        </div>
+        <div>
+            {{ form.option_2.label }}: {{ form.option_2() }}
+        </div>
+        <div>
+            {{ form.option_3.label }}: {{ form.option_3() }}
+        </div>
+        <div>
+            {{ form.option_4.label }}: {{ form.option_4() }}
+        </div>
+        <div>
+            {{ form.answer.label }}: {{ form.answer() }}
+        </div>
+        <div>
+            {{ form.submit() }}
+        </div>
+    </form>
+</body>
+</html>

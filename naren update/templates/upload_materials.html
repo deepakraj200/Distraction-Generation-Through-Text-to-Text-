@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Study Materials</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fb;
+            color: #333;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .header h1 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+        }
+        
+        .back-btn {
+            display: flex;
+            align-items: center;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .back-btn i {
+            margin-right: 5px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="text"]:focus,
+        select:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+        
+        .file-upload {
+            border: 2px dashed #ddd;
+            padding: 30px;
+            text-align: center;
+            border-radius: 6px;
+            margin-bottom: 25px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .file-upload:hover {
+            border-color: #3498db;
+            background-color: rgba(52, 152, 219, 0.05);
+        }
+        
+        .file-upload i {
+            font-size: 2.5rem;
+            color: #3498db;
+            margin-bottom: 15px;
+        }
+        
+        .file-upload h3 {
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .file-upload p {
+            color: #7f8c8d;
+            margin-bottom: 15px;
+        }
+        
+        .file-upload input[type="file"] {
+            display: none;
+        }
+        
+        .file-upload .upload-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .file-upload .upload-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        #fileInfo {
+            margin-top: 15px;
+            font-style: italic;
+            color: #7f8c8d;
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn i {
+            margin-right: 8px;
+        }
+        
+        .materials-list {
+            margin-top: 30px;
+        }
+        
+        .materials-list h2 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-size: 1.5rem;
+        }
+        
+        .material-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            transition: all 0.3s;
+        }
+        
+        .material-item:hover {
+            background-color: #f8f9fa;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .material-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .material-icon {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: #3498db;
+        }
+        
+        .material-icon.pdf {
+            color: #e74c3c;
+        }
+        
+        .material-details h3 {
+            margin-bottom: 5px;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+        
+        .material-details p {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        .material-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .action-btn {
+            background-color: transparent;
+            border: none;
+            color: #3498db;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .action-btn:hover {
+            color: #2980b9;
+        }
+        
+        .action-btn.delete {
+            color: #e74c3c;
+        }
+        
+        .action-btn.delete:hover {
+            color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Upload Study Materials</h1>
+            <a href="/staff/dashboard" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back to Dashboard
+            </a>
+        </div>
+        
+        <form id="uploadForm">
+            <div class="form-group">
+                <label for="materialTitle">Title:</label>
+                <input type="text" id="materialTitle" name="materialTitle" placeholder="Enter a title for this material" required>
+                <div id="titleError" class="error-message">Please enter a title</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="materialType">Type:</label>
+                <select id="materialType" name="materialType" required>
+                    <option value="">Select material type</option>
+                    <option value="notes">Lecture Notes</option>
+                    <option value="slides">Presentation Slides</option>
+                    <option value="assignment">Assignment</option>
+                    <option value="reference">Reference Material</option>
+                    <option value="other">Other</option>
+                </select>
+                <div id="typeError" class="error-message">Please select a material type</div>
+            </div>
+            
+            <div class="file-upload" id="dropArea">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <h3>Upload PDF File</h3>
+                <p>Drag & drop your PDF file here or click the button below</p>
+                <button type="button" class="upload-btn" id="browseBtn">Browse Files</button>
+                <input type="file" id="materialFile" name="materialFile" accept=".pdf" required>
+                <div id="fileInfo">No file selected</div>
+                <div id="fileError" class="error-message">Please select a PDF file</div>
+            </div>
+            
+            <button type="submit" class="btn" id="uploadBtn">
+                <i class="fas fa-upload"></i> Upload Material
+            </button>
+        </form>
+        
+        <div class="materials-list">
+            <h2>Uploaded Materials</h2>
+            <div id="materialsList">
+                <!-- Materials will be listed here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropArea = document.getElementById('dropArea');
+            const browseBtn = document.getElementById('browseBtn');
+            const materialFile = document.getElementById('materialFile');
+            const fileInfo = document.getElementById('fileInfo');
+            const fileError = document.getElementById('fileError');
+            const uploadForm = document.getElementById('uploadForm');
+            const titleError = document.getElementById('titleError');
+            const typeError = document.getElementById('typeError');
+            const materialsList = document.getElementById('materialsList');
+            
+            // Load existing materials
+            loadMaterials();
+            
+            // Handle file selection via browse button
+            browseBtn.addEventListener('click', function() {
+                materialFile.click();
+            });
+            
+            // Handle file selection
+            materialFile.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    const file = this.files[0];
+                    if (file.type === 'application/pdf') {
+                        fileInfo.textContent = `File: ${file.name} (${(file.size / 1024).toFixed(2)} KB)`;
+                        dropArea.style.borderColor = '#2ecc71';
+                        fileError.style.display = 'none';
+                    } else {
+                        fileInfo.textContent = 'Invalid file type. Please select a PDF file.';
+                        dropArea.style.borderColor = '#e74c3c';
+                        fileError.style.display = 'block';
+                    }
+                } else {
+                    fileInfo.textContent = 'No file selected';
+                    dropArea.style.borderColor = '#ddd';
+                }
+            });
+            
+            // Handle drag and drop
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropArea.addEventListener(eventName, preventDefaults, false);
+            });
+            
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropArea.addEventListener(eventName, highlight, false);
+            });
+            
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropArea.addEventListener(eventName, unhighlight, false);
+            });
+            
+            function highlight() {
+                dropArea.style.borderColor = '#3498db';
+                dropArea.style.backgroundColor = 'rgba(52, 152, 219, 0.1)';
+            }
+            
+            function unhighlight() {
+                dropArea.style.borderColor = '#ddd';
+                dropArea.style.backgroundColor = 'transparent';
+            }
+            
+            dropArea.addEventListener('drop', handleDrop, false);
+            
+            function handleDrop(e) {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                
+                if (files.length > 0) {
+                    const file = files[0];
+                    if (file.type === 'application/pdf') {
+                        materialFile.files = files;
+                        fileInfo.textContent = `File: ${file.name} (${(file.size / 1024).toFixed(2)} KB)`;
+                        dropArea.style.borderColor = '#2ecc71';
+                        fileError.style.display = 'none';
+                    } else {
+                        fileInfo.textContent = 'Invalid file type. Please select a PDF file.';
+                        dropArea.style.borderColor = '#e74c3c';
+                        fileError.style.display = 'block';
+                    }
+                }
+            }
+            
+            // Form validation and submission
+            uploadForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                let isValid = true;
+                
+                // Validate title
+                const title = document.getElementById('materialTitle').value.trim();
+                if (!title) {
+                    titleError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    titleError.style.display = 'none';
+                }
+                
+                // Validate type
+                const type = document.getElementById('materialType').value;
+                if (!type) {
+                    typeError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    typeError.style.display = 'none';
+                }
+                
+                // Validate file
+                if (!materialFile.files || !materialFile.files[0]) {
+                    fileError.style.display = 'block';
+                    isValid = false;
+                } else if (materialFile.files[0].type !== 'application/pdf') {
+                    fileError.textContent = 'Please select a PDF file';
+                    fileError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    fileError.style.display = 'none';
+                }
+                
+                if (isValid) {
+                    // In a real implementation, this would upload the file to the server
+                    // For demonstration, we'll simulate the upload
+                    
+                    const file = materialFile.files[0];
+                    const materialData = {
+                        id: Date.now().toString(),
+                        title: title,
+                        type: type,
+                        filename: file.name,
+                        size: file.size,
+                        uploadDate: new Date().toISOString()
+                    };
+                    
+                    // Save to localStorage for demonstration
+                    saveMaterial(materialData);
+                    
+                    // Add to the list
+                    addMaterialToList(materialData);
+                    
+                    // Reset form
+                    uploadForm.reset();
+                    fileInfo.textContent = 'No file selected';
+                    dropArea.style.borderColor = '#ddd';
+                    
+                    alert('Material uploaded successfully!');
+                }
+            });
+            
+            function saveMaterial(materialData) {
+                // Get existing materials from localStorage
+                const materials = JSON.parse(localStorage.getItem('studyMaterials') || '[]');
+                
+                // Add new material
+                materials.push(materialData);
+                
+                // Save back to localStorage
+                localStorage.setItem('studyMaterials', JSON.stringify(materials));
+            }
+            
+            function loadMaterials() {
+                // Get materials from localStorage
+                const materials = JSON.parse(localStorage.getItem('studyMaterials') || '[]');
+                
+                // Clear the list
+                materialsList.innerHTML = '';
+                
+                // Add each material to the list
+                materials.forEach(material => {
+                    addMaterialToList(material);
+                });
+                
+                // If no materials, show a message
+                if (materials.length === 0) {
+                    materialsList.innerHTML = '<p style="text-align: center; color: #7f8c8d;">No materials uploaded yet.</p>';
+                }
+            }
+            
+            function addMaterialToList(material) {
+                const materialItem = document.createElement('div');
+                materialItem.className = 'material-item';
+                materialItem.dataset.id = material.id;
+                
+                // Format the date
+                const uploadDate = new Date(material.uploadDate);
+                const formattedDate = uploadDate.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+                
+                // Format the type
+                let displayType = '';
+                switch (material.type) {
+                    case 'notes': displayType = 'Lecture Notes'; break;
+                    case 'slides': displayType = 'Presentation Slides'; break;
+                    case 'assignment': displayType = 'Assignment'; break;
+                    case 'reference': displayType = 'Reference Material'; break;
+                    default: displayType = 'Other';
+                }
+                
+                materialItem.innerHTML = `
+                    <div class="material-info">
+                        <i class="fas fa-file-pdf material-icon pdf"></i>
+                        <div class="material-details">
+                            <h3>${material.title}</h3>
+                            <p>${displayType} • Uploaded on ${formattedDate}</p>
+                        </div>
+                    </div>
+                    <div class="material-actions">
+                        <button class="action-btn view" title="View">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="action-btn download" title="Download">
+                            <i class="fas fa-download"></i>
+                        </button>
+                        <button class="action-btn delete" title="Delete">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                `;
+                
+                // Add to the list
+                if (materialsList.firstChild) {
+                    materialsList.insertBefore(materialItem, materialsList.firstChild);
+                } else {
+                    materialsList.appendChild(materialItem);
+                }
+                
+                // Add event listeners
+                materialItem.querySelector('.delete').addEventListener('click', function() {
+                    if (confirm(`Are you sure you want to delete "${material.title}"?`)) {
+                        deleteMaterial(material.id);
+                        materialItem.remove();
+                        
+                        // If no materials left, show a message
+                        if (materialsList.children.length === 0) {
+                            materialsList.innerHTML = '<p style="text-align: center; color: #7f8c8d;">No materials uploaded yet.</p>';
+                        }
+                    }
+                });
+                
+                materialItem.querySelector('.view').addEventListener('click', function() {
+                    alert(`Viewing ${material.title}`);
+                    // In a real implementation, this would open the PDF in a viewer
+                });
+                
+                materialItem.querySelector('.download').addEventListener('click', function() {
+                    alert(`Downloading ${material.title}`);
+                    // In a real implementation, this would trigger a download
+                });
+            }
+            
+            function deleteMaterial(id) {
+                // Get existing materials
+                const materials = JSON.parse(localStorage.getItem('studyMaterials') || '[]');
+                
+                // Filter out the deleted material
+                const updatedMaterials = materials.filter(material => material.id !== id);
+                
+                // Save back to localStorage
+                localStorage.setItem('studyMaterials', JSON.stringify(updatedMaterials));
+            }
+        });
+    </script>
+</body>
+</html>

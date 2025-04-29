@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Test</title>
+    <style>
+        #progress-container {
+            width: 100%;
+            background-color: #f3f3f3;
+        }
+        #progress-bar {
+            width: 0%;
+            height: 30px;
+            background-color: green;
+        }
+        #notification {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h2>Create Test</h2>
+    
+    <form id="create-test-form">
+        <!-- Your form elements like test name, questions, etc. -->
+
+        <button type="submit">Save Test</button>
+    </form>
+
+    <!-- Progress Bar -->
+    <div id="progress-container">
+        <div id="progress-bar"></div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification"></div>
+
+    <script>
+        // Handle form submission and AJAX
+        document.getElementById('create-test-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Initialize progress
+            let progress = 0;
+            let progressBar = document.getElementById('progress-bar');
+            let notification = document.getElementById('notification');
+            notification.innerText = "Saving test...";
+
+            // Example of AJAX request to submit data (you can adjust this as per your actual data)
+            let formData = new FormData(this);  // Collect form data
+            fetch('/save_test', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Simulate progress updates during the saving process
+                let interval = setInterval(() => {
+                    if (progress < 100) {
+                        progress += 10;  // Increase progress
+                        progressBar.style.width = progress + '%';  // Update the progress bar
+                    } else {
+                        clearInterval(interval);  // Stop the interval when 100% is reached
+                        notification.innerText = "Test saved successfully!";
+                    }
+                }, 500);  // Update every half second
+            })
+            .catch(error => {
+                notification.innerText = "Error saving test.";
+                console.error("Error:", error);
+            });
+        });
+    </script>
+</body>
+</html>
